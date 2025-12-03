@@ -1,12 +1,12 @@
 /**
- * Styles simplistes pour la page d'accueil
- * Design minimaliste - le front viendra plus tard
+ * Styles pour la page d'accueil
+ * Thème sombre accueillant et chaleureux
  */
 
 .home-page {
   min-height: 100vh;
   padding: 2rem;
-  background: #f5f5f5;
+  background: var(--bg-primary);
   padding-bottom: 2rem;
 }
 
@@ -20,20 +20,22 @@
 .home-container {
   max-width: 1200px;
   margin: 0 auto;
-  background: white;
-  border-radius: 8px;
+  background: var(--bg-card);
+  border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
 }
 
 /* Section Hero */
 .hero-section {
   text-align: center;
   padding: 3rem 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--accent-warm) 0%, var(--accent-warm-dark) 100%);
   border-radius: 12px;
   color: white;
   margin-bottom: 3rem;
+  box-shadow: var(--shadow-lg);
 }
 
 .hero-section h1 {
@@ -62,7 +64,7 @@
 
 .cta-button {
   background: white;
-  color: #667eea;
+  color: var(--accent-warm-dark);
   border: none;
   padding: 1rem 2.5rem;
   border-radius: 50px;
@@ -70,12 +72,13 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .cta-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  background: #f5f5f5;
 }
 
 .cta-button:active {
@@ -85,18 +88,19 @@
 .user-welcome {
   text-align: center;
   padding: 1rem;
-  background: #f0f0f0;
+  background: var(--bg-secondary);
   border-radius: 8px;
   margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
 }
 
 .user-welcome span {
   font-size: 1.1rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .user-welcome strong {
-  color: #667eea;
+  color: var(--accent-warm);
 }
 
 /* Sections */
@@ -106,11 +110,11 @@
 
 .feed-section h2,
 .movies-section h2 {
-  color: #333;
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid var(--border-color);
 }
 
 /* Onglets */
@@ -118,7 +122,7 @@
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid var(--border-color);
 }
 
 .tabs button {
@@ -126,7 +130,7 @@
   padding: 0.75rem;
   border: none;
   background: transparent;
-  color: #666;
+  color: var(--text-secondary);
   cursor: pointer;
   font-size: 1rem;
   border-bottom: 2px solid transparent;
@@ -135,12 +139,12 @@
 }
 
 .tabs button:hover {
-  color: #333;
+  color: var(--text-primary);
 }
 
 .tabs button.active {
-  color: #333;
-  border-bottom-color: #333;
+  color: var(--accent-warm);
+  border-bottom-color: var(--accent-warm);
   font-weight: 600;
 }
 
@@ -159,42 +163,45 @@
 
 .form-group label {
   font-weight: 500;
-  color: #333;
+  color: var(--text-primary);
   font-size: 0.9rem;
 }
 
 .form-group input {
   padding: 0.75rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   font-size: 1rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   transition: border-color 0.2s;
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #333;
+  border-color: var(--accent-warm);
 }
 
 .form-group input:disabled {
-  background-color: #f5f5f5;
+  background-color: var(--bg-tertiary);
   cursor: not-allowed;
+  opacity: 0.6;
 }
 
 /* Message d'erreur */
 .error-message {
-  background-color: #fee;
-  color: #c33;
+  background-color: rgba(231, 76, 60, 0.2);
+  color: #ff6b6b;
   padding: 0.75rem;
   border-radius: 4px;
   margin-bottom: 1rem;
-  border: 1px solid #fcc;
+  border: 1px solid rgba(231, 76, 60, 0.4);
   font-size: 0.9rem;
 }
 
 /* Bouton de soumission */
 .submit-button {
-  background: #333;
+  background: var(--accent-warm);
   color: white;
   border: none;
   padding: 0.75rem;
@@ -207,7 +214,7 @@
 }
 
 .submit-button:hover:not(:disabled) {
-  background: #555;
+  background: var(--accent-warm-light);
 }
 
 .submit-button:disabled {
@@ -222,7 +229,7 @@
 
 .movies-section h2 {
   margin-bottom: 1.5rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .movies-grid {
@@ -233,14 +240,16 @@
 }
 
 .movie-card {
-  background: #f9f9f9;
+  background: var(--bg-secondary);
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.2s;
+  border: 1px solid var(--border-color);
 }
 
 .movie-card:hover {
   transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
 .movie-poster {
@@ -256,7 +265,7 @@
 .movie-info h3 {
   font-size: 0.9rem;
   margin: 0 0 0.5rem 0;
-  color: #333;
+  color: var(--text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -264,13 +273,13 @@
 
 .movie-date {
   font-size: 0.8rem;
-  color: #666;
+  color: var(--text-secondary);
   margin: 0;
 }
 
 .movie-rating {
   font-size: 0.8rem;
-  color: #333;
+  color: var(--accent-warm);
   margin: 0.5rem 0 0 0;
 }
 
@@ -295,7 +304,7 @@
 }
 
 .browse-profiles-btn {
-  background: #4a90e2;
+  background: var(--accent-warm);
   color: white;
   text-decoration: none;
   padding: 0.75rem 1.5rem;
@@ -306,21 +315,21 @@
 }
 
 .browse-profiles-btn:hover {
-  background: #357abd;
+  background: var(--accent-warm-light);
 }
 
 /* Section des demandes d'amis */
 .friend-requests-section {
-  background: #f9f9f9;
+  background: var(--bg-secondary);
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 2rem;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color);
 }
 
 .friend-requests-section h3 {
   margin: 0 0 1rem 0;
-  color: #333;
+  color: var(--text-primary);
   font-size: 1.2rem;
 }
 
@@ -331,14 +340,19 @@
 }
 
 .friend-request-item {
-  background: white;
+  background: var(--bg-card);
   border-radius: 8px;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color);
+  transition: background 0.2s;
+}
+
+.friend-request-item:hover {
+  background: var(--bg-hover);
 }
 
 .friend-request-user {
@@ -375,12 +389,12 @@
 }
 
 .friend-request-info strong {
-  color: #333;
+  color: var(--text-primary);
   font-size: 1rem;
 }
 
 .friend-request-bio {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 0.85rem;
 }
 
@@ -425,7 +439,7 @@
 }
 
 .nav-link {
-  color: #333;
+  color: var(--text-primary);
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -433,21 +447,24 @@
 }
 
 .nav-link:hover {
-  background: #f0f0f0;
+  background: var(--bg-hover);
+  color: var(--accent-warm);
 }
 
 .logout-btn {
-  background: #666;
-  color: white;
-  border: none;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
+  transition: all 0.2s;
 }
 
 .logout-btn:hover {
-  background: #555;
+  background: var(--bg-hover);
+  border-color: var(--accent-warm);
 }
 
 .feed-list {
@@ -457,10 +474,17 @@
 }
 
 .feed-item {
-  background: #f9f9f9;
+  background: var(--bg-secondary);
   border-radius: 8px;
   padding: 1.5rem;
-  border-left: 4px solid #333;
+  border-left: 4px solid var(--accent-warm);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s;
+}
+
+.feed-item:hover {
+  background: var(--bg-hover);
+  box-shadow: var(--shadow-sm);
 }
 
 .feed-header {
@@ -480,13 +504,13 @@
 
 .feed-user-bio {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--text-secondary);
   font-style: italic;
 }
 
 .feed-date {
   font-size: 0.8rem;
-  color: #999;
+  color: var(--text-muted);
 }
 
 .feed-content {
@@ -511,13 +535,13 @@
 .feed-film-details h3 {
   margin: 0 0 0.25rem 0;
   font-size: 1.1rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .feed-film-year {
   margin: 0;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .feed-rating {
@@ -528,37 +552,37 @@
 }
 
 .rating-label {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 0.9rem;
   font-weight: 500;
 }
 
 .feed-comment {
-  color: #333;
+  color: var(--text-primary);
   line-height: 1.6;
   font-size: 1rem;
   padding: 1rem;
-  background: white;
+  background: var(--bg-card);
   border-radius: 4px;
-  border-left: 3px solid #333;
+  border-left: 3px solid var(--accent-warm);
 }
 
 .empty-state {
   text-align: center;
   padding: 3rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .loading {
   text-align: center;
   padding: 2rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .auth-section {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--border-color);
 }
 
 /* Responsive */
@@ -641,7 +665,7 @@
 .featured-films-section h2,
 .featured-films-section h3 {
   margin-bottom: 1.5rem;
-  color: #333;
+  color: var(--text-primary);
   font-size: 1.5rem;
 }
 
@@ -653,18 +677,19 @@
 }
 
 .featured-film-card {
-  background: white;
+  background: var(--bg-secondary);
   border-radius: 8px;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color);
 }
 
 .featured-film-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-warm);
 }
 
 .featured-film-poster {
@@ -680,7 +705,7 @@
 .featured-film-info h4 {
   font-size: 0.9rem;
   margin: 0 0 0.5rem 0;
-  color: #333;
+  color: var(--text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -688,7 +713,7 @@
 
 .featured-film-year {
   font-size: 0.8rem;
-  color: #666;
+  color: var(--text-secondary);
   margin: 0 0 0.5rem 0;
 }
 
@@ -700,7 +725,7 @@
 
 .rating-value {
   font-size: 0.85rem;
-  color: #333;
+  color: var(--accent-warm);
   font-weight: bold;
 }
 

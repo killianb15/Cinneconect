@@ -10,6 +10,7 @@ import { createOrUpdateReview } from '../services/reviewService';
 import { getCurrentUser } from '../services/authService';
 import StarRating from '../components/StarRating';
 import useDebounce from '../hooks/useDebounce';
+import useRefreshData from '../hooks/useRefreshData';
 import './SearchMoviesPage.css';
 
 function SearchMoviesPage() {
@@ -75,6 +76,32 @@ function SearchMoviesPage() {
       searchInputRef.current.focus();
     }
   }, []);
+
+  // Fonction pour rafraîchir la recherche actuelle
+  const refreshSearch = async () => {
+    if (searchQuery.trim()) {
+      setLoading(true);
+      setError('');
+      try {
+        const data = await searchMovies(searchQuery.trim());
+        setFilms(data.films || []);
+        if (data.films && data.films.length === 0) {
+          setError(`Aucun film trouvé pour "${searchQuery.trim()}"`);
+        } else {
+          setError('');
+        }
+      } catch (err) {
+        setError('Erreur lors de la recherche. Veuillez réessayer.');
+        console.error('Erreur recherche:', err);
+        setFilms([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
+  // Gérer le raccourci Ctrl+Shift+R pour rafraîchir les données
+  useRefreshData(refreshSearch);
 
   const handleInputChange = (e) => {
     setSearchQuery(e.target.value);

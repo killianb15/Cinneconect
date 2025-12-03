@@ -5,7 +5,7 @@
 .groups-page {
   min-height: 100vh;
   padding: 2rem;
-  background: #f5f5f5;
+  background: var(--bg-primary);
   padding-bottom: 2rem;
 }
 
@@ -19,26 +19,28 @@
 .groups-container {
   max-width: 1200px;
   margin: 0 auto;
-  background: white;
+  background: var(--bg-card);
   border-radius: 8px;
   padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
 }
 
 .back-button {
-  background: #666;
-  color: white;
-  border: none;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
   margin-bottom: 1.5rem;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 .back-button:hover {
-  background: #555;
+  background: var(--bg-hover);
+  border-color: var(--accent-warm);
 }
 
 .groups-header {
@@ -50,33 +52,35 @@
 
 .groups-header h1 {
   margin: 0;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .create-btn {
-  background: #333;
+  background: var(--accent-warm);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
+  transition: background 0.2s;
 }
 
 .create-btn:hover {
-  background: #555;
+  background: var(--accent-warm-light);
 }
 
 .create-group-form {
-  background: #f9f9f9;
+  background: var(--bg-secondary);
   padding: 2rem;
   border-radius: 8px;
   margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
 }
 
 .create-group-form h2 {
   margin-top: 0;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .create-group-form .form-group {
@@ -88,15 +92,23 @@
 
 .create-group-form label {
   font-weight: 500;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .create-group-form input,
 .create-group-form textarea {
   padding: 0.75rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   font-size: 1rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.create-group-form input:focus,
+.create-group-form textarea:focus {
+  outline: none;
+  border-color: var(--accent-warm);
 }
 
 .create-group-form textarea {
@@ -111,16 +123,19 @@
 }
 
 .group-card {
-  background: #f9f9f9;
+  background: var(--bg-secondary);
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s;
-  border-left: 4px solid #333;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-left: 4px solid var(--accent-warm);
+  border: 1px solid var(--border-color);
 }
 
 .group-card:hover {
   transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-warm);
 }
 
 .group-cover {
@@ -135,11 +150,11 @@
 
 .group-content h3 {
   margin: 0 0 0.5rem 0;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .group-description {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 0.9rem;
   margin: 0.5rem 0;
   line-height: 1.5;
@@ -147,7 +162,7 @@
 
 .group-theme {
   display: inline-block;
-  background: #333;
+  background: var(--accent-warm);
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
@@ -160,13 +175,13 @@
   gap: 1rem;
   margin-top: 1rem;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .user-role {
   margin-left: auto;
   font-weight: 500;
-  color: #333;
+  color: var(--accent-warm);
 }
 
 @media (max-width: 768px) {

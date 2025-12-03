@@ -9,6 +9,7 @@ import { getCurrentUser } from '../services/authService';
 import { searchMovies } from '../services/movieService';
 import StarRating from '../components/StarRating';
 import useDebounce from '../hooks/useDebounce';
+import useRefreshData from '../hooks/useRefreshData';
 import './ProfilePage.css';
 
 function ProfilePage() {
@@ -37,11 +38,6 @@ function ProfilePage() {
 
   // Debounce de la requête de recherche pour les films préférés (500ms de délai)
   const debouncedSearchQuery = useDebounce(searchQuery, 500);
-
-  useEffect(() => {
-    loadProfile();
-    loadGroups();
-  }, [userId]);
 
   // Recherche automatique quand la valeur debouncée change (pour les films préférés)
   useEffect(() => {
@@ -102,6 +98,19 @@ function ProfilePage() {
       console.error('Erreur:', err);
     }
   };
+
+  // Fonction pour rafraîchir toutes les données
+  const refreshAllData = () => {
+    loadProfile();
+    loadGroups();
+  };
+
+  useEffect(() => {
+    refreshAllData();
+  }, [userId]);
+
+  // Gérer le raccourci Ctrl+Shift+R pour rafraîchir les données
+  useRefreshData(refreshAllData);
 
   const handleChange = (e) => {
     setFormData({

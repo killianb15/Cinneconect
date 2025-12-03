@@ -7,7 +7,8 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { getGroupDetails, joinGroup, leaveGroup, inviteToGroup, addFilmToGroup } from '../services/groupService';
 import { getLatestMovies } from '../services/movieService';
 import { createGroupMessage } from '../services/groupMessageService';
-import { getCurrentUser } from '../services/authService';
+import { getCurrentUser, isAuthenticated } from '../services/authService';
+import { reportContent } from '../services/moderationService';
 import useGroupMessages from '../hooks/useGroupMessages';
 import './GroupDetailsPage.css';
 
@@ -132,6 +133,23 @@ function GroupDetailsPage() {
     }
   };
 
+  const handleReportMessage = async (messageId) => {
+    if (!isAuthenticated()) {
+      setError('Vous devez être connecté pour signaler un message');
+      return;
+    }
+
+    const reason = prompt('Raison du signalement (optionnel):');
+    if (reason === null) return; // Annulé
+
+    try {
+      await reportContent('group_message', messageId, reason);
+      alert('Message signalé avec succès');
+    } catch (err) {
+      setError(err.response?.data?.error || 'Erreur lors du signalement');
+    }
+  };
+
   if (loading) {
     return <div className="group-details-page"><div className="loading">Chargement...</div></div>;
   }
@@ -250,6 +268,15 @@ function GroupDetailsPage() {
                                 minute: '2-digit' 
                               })}
                             </span>
+                            {!isOwnMessage && (
+                              <button
+                                onClick={() => handleReportMessage(msg.id)}
+                                className="report-message-btn"
+                                title="Signaler ce message"
+                              >
+                                🚩
+                              </button>
+                            )}
                           </div>
                           <div className="message-text">{msg.message}</div>
                         </div>

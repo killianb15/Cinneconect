@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getReports, handleReport } from '../services/moderationService';
 import { getCurrentUser } from '../services/authService';
+import useRefreshData from '../hooks/useRefreshData';
 import './ModerationPage.css';
 
 function ModerationPage() {
@@ -22,15 +23,25 @@ function ModerationPage() {
   const [actionNotes, setActionNotes] = useState({});
   const [allReports, setAllReports] = useState([]); // Pour les statistiques
 
+  // Fonction pour rafraîchir toutes les données
+  const refreshAllData = () => {
+    if (currentUser && currentUser.role === 'admin') {
+      loadReports();
+      loadAllReportsForStats();
+    }
+  };
+
   // Vérifier que l'utilisateur est admin
   useEffect(() => {
     if (!currentUser || currentUser.role !== 'admin') {
       navigate('/');
       return;
     }
-    loadReports();
-    loadAllReportsForStats(); // Charger tous les signalements pour les stats
+    refreshAllData();
   }, [statusFilter]);
+
+  // Gérer le raccourci Ctrl+Shift+R pour rafraîchir les données
+  useRefreshData(refreshAllData);
 
   const loadAllReportsForStats = async () => {
     try {

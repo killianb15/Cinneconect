@@ -4,7 +4,7 @@
  * - Si connecté : affiche les reviews récentes des utilisateurs
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { isAuthenticated, getCurrentUser, logout } from '../services/authService';
 import { getLatestMovies } from '../services/movieService';
@@ -12,6 +12,7 @@ import { getFeed, getGlobalFeed } from '../services/feedService';
 import { getFriendRequests, acceptFriendRequest, rejectFriendRequest } from '../services/friendService';
 import StarRating from '../components/StarRating';
 import AuthModal from '../components/AuthModal';
+import useRefreshData from '../hooks/useRefreshData';
 import './HomePage.css';
 
 function HomePage() {
@@ -33,16 +34,6 @@ function HomePage() {
   // État pour les demandes d'amis
   const [friendRequests, setFriendRequests] = useState([]);
   const [loadingFriendRequests, setLoadingFriendRequests] = useState(false);
-
-  // Charger le fil d'actualité (global si non connecté, amis si connecté)
-  useEffect(() => {
-    loadFeed();
-    if (isLoggedIn) {
-      loadFriendRequests();
-    } else {
-      loadFilms();
-    }
-  }, [isLoggedIn]);
 
   const loadFilms = async () => {
     setLoadingFilms(true);
@@ -88,6 +79,24 @@ function HomePage() {
       setLoadingFriendRequests(false);
     }
   };
+
+  // Fonction pour rafraîchir toutes les données
+  const refreshAllData = useCallback(() => {
+    loadFeed();
+    if (isLoggedIn) {
+      loadFriendRequests();
+    } else {
+      loadFilms();
+    }
+  }, [isLoggedIn]);
+
+  // Charger le fil d'actualité (global si non connecté, amis si connecté)
+  useEffect(() => {
+    refreshAllData();
+  }, [refreshAllData]);
+
+  // Gérer le raccourci Ctrl+Shift+R pour rafraîchir les données
+  useRefreshData(refreshAllData);
 
   const handleAcceptFriendRequest = async (userId) => {
     try {

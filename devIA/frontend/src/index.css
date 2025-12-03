@@ -1,6 +1,6 @@
 /**
  * Styles globaux de l'application
- * Design simpliste
+ * Thème sombre accueillant et chaleureux
  */
 
 :root {
@@ -9,8 +9,32 @@
     sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #333;
-  background-color: #f5f5f5;
+  
+  /* Palette de couleurs - Thème sombre chaleureux */
+  --bg-primary: #1e1e1e;
+  --bg-secondary: #2a2a2a;
+  --bg-tertiary: #333333;
+  --bg-card: #2d2d2d;
+  --bg-hover: #3a3a3a;
+  
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --text-muted: #888888;
+  
+  --accent-warm: #ff8c42;
+  --accent-warm-light: #ffa64d;
+  --accent-warm-dark: #e67e2e;
+  --accent-gold: #d4af37;
+  
+  --border-color: #404040;
+  --border-light: #505050;
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -1,6 +1,6 @@
 /**
  * Styles principaux de l'application CinéConnect
- * Design simpliste - le front viendra plus tard
+ * Thème sombre accueillant et chaleureux
  */
 
 * {
@@ -15,7 +15,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f5f5f5;
+  background: var(--bg-primary);
+  color: var(--text-primary);
   min-height: 100vh;
   /* Padding en bas pour le menu mobile uniquement */
   padding-bottom: 0;
